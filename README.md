@@ -1,3 +1,3 @@
 # IMBService
 
-A description of this package.
+Generic Service layer for making api requests. 
