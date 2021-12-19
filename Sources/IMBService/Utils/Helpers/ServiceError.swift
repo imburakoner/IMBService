@@ -7,19 +7,17 @@
 
 import Foundation
 
-public enum ServiceError: Error {
-    case unknown
-    case noInternetConnection
+public enum ServiceError: Int, Error {
+    case unknown = 0
+    case decoding
+    case requestCreation
+    case noInternetConnection = -1009
+    case badURL = -1000
 }
 
 extension ServiceError {
     init(withError error: Error) {
         let error = error as NSError
-
-        if error.code == 999 {
-            self = .noInternetConnection
-        } else {
-            self = .unknown
-        }
+        self = Self(rawValue: error.code) ?? .unknown
     }
 }
